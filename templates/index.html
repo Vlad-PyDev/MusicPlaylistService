@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Music Playlist - Старт</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="playlist-container">
+    <h1>Music Playlist Manager</h1>
+    <a href="{{ url_for('main') }}" class="btn">Управлять плейлистами</a>
+  </div>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

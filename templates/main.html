@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Music Playlist - Плейлисты</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="playlist-container">
+    <h1>Плейлист Менеджер</h1>
+    <form method="POST" action="{{ url_for('main') }}">
+      <input type="text" name="name" placeholder="Название плейлиста" required>
+      <button type="submit" name="add_playlist" class="btn">Добавить плейлист</button>
+    </form>
+    {% for pl in playlists %}
+    <div class="playlist">
+      <h2>{{ pl.name }}</h2>
+      <form method="POST" action="{{ url_for('main') }}">
+        <input type="hidden" name="playlist_id" value="{{ pl.id }}">
+        <input type="text" name="song" placeholder="Добавить песню" required>
+        <button type="submit" name="add_song" class="btn">Добавить</button>
+      </form>
+      {% if pl.songs %}
+      <ul class="song-list">
+        {% for song in pl.songs %}
+        <li>{{ song }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      <form method="POST" action="{{ url_for('main') }}">
+        <input type="hidden" name="playlist_id" value="{{ pl.id }}">
+        <button type="submit" name="delete_playlist" class="btn-action delete">Удалить плейлист</button>
+      </form>
+    </div>
+    {% endfor %}
+    <a href="{{ url_for('index') }}" class="btn">На старт</a>
+  </div>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
